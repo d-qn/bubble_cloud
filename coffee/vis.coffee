@@ -33,6 +33,11 @@ Bubbles = () ->
   #  a different dataset if desired
   textValue = (d) -> d.name
 
+  # ---------------- test text ---------------
+  bottomText = (d) -> d.test
+  
+  
+  
   # constants to control how
   # collision look and act
   collisionPadding = 4
@@ -337,9 +342,9 @@ Bubbles = () ->
     node.classed("bubble-selected", (d) -> id == idValue(d))
     # if no node is selected, id will be empty
     if id.length > 0
-      d3.select("#status").html("<h3>The word <span class=\"active\">#{id}</span> is now active</h3>")
+      d3.select("#status").html("<h3>Sample tweets with the word <span class=\"active\">#{id}</span> :</h3>")
     else
-      d3.select("#status").html("<h3>No word is active</h3>")
+      d3.select("#status").html("<h3>Click on a word to see its related tweets</h3>")
 
   # ---
   # hover event
@@ -353,15 +358,15 @@ Bubbles = () ->
   mouseout = (d) ->
     node.classed("bubble-hover", false)
 
-  # ---
-  # public getter/setter for jitter variable
-  # ---
-  chart.jitter = (_) ->
-    if !arguments.length
-      return jitter
-    jitter = _
-    force.start()
-    chart
+  # # --- 	JITTER SELECTOR DISABLED -----
+  # # public getter/setter for jitter variable
+  # # ---
+  # chart.jitter = (_) ->
+  #   if !arguments.length
+  #     return jitter
+  #   jitter = _
+  #   force.start()
+  #   chart
 
   # ---
   # public getter/setter for height variable
@@ -437,11 +442,12 @@ $ ->
   # select the current text in the drop-down
   $("#text-select").val(key)
 
-  # bind change in jitter range slider
-  # to update the plot's jitter
-  d3.select("#jitter")
-    .on "input", () ->
-      plot.jitter(parseFloat(this.output.value))
+  # # --- 	JITTER SELECTOR DISABLED -----
+  # # bind change in jitter range slider
+  # # to update the plot's jitter
+  # d3.select("#jitter")
+  #   .on "input", () ->
+  #     plot.jitter(parseFloat(this.output.value))
 
   # bind change in drop down to change the
   # search url and reset the hash url
